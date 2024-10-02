@@ -4,6 +4,8 @@ import 'package:enbl_alpha/homepage/main_food_page.dart';
 import 'package:enbl_alpha/nutritionpage/nutrition_page.dart';
 import 'package:enbl_alpha/profilepage/profile_page.dart';
 import 'package:enbl_alpha/searchpage/search_page.dart';
+import 'package:enbl_alpha/accountCreation/account_creation.dart'; // Update this to the correct path
+import 'package:enbl_alpha/accountCreation/login_page.dart'; // Correct path for account creation
 
 void main() {
   runApp(const MyApp());
@@ -20,11 +22,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MainScreen(),
+      home: const LoginPage(), // Show the LoginPage when the app starts
     );
   }
 }
 
+// MainScreen with Bottom Navigation Bar
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
 
@@ -35,28 +38,26 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
-  // List of pages for navigation
+  // List of pages for the BottomNavigationBar
   static final List<Widget> _pages = <Widget>[
-    MainFoodPage(),      // Your MainFoodPage
-    FitnessPage(),       // Your FitnessPage
-    SearchPage(),        // Your SearchPage
-    NutritionPage(),     // Your NutritionPage
-    ProfilePage(),       // Your ProfilePage
+    MainFoodPage(),
+    FitnessPage(),
+    SearchPage(),
+    NutritionPage(),
+    ProfilePage(),
   ];
 
-  // Handle tap on bottom navigation bar
+  // Function to handle taps on the BottomNavigationBar
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index; // Update the index to switch pages
+      _selectedIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[_selectedIndex], // Display the selected page
-
-      // Custom Bottom Navigation Bar
+      body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
@@ -83,8 +84,8 @@ class _MainScreenState extends State<MainScreen> {
             label: 'Profile',
           ),
         ],
-        selectedItemColor: Colors.green,     // Set the color of the selected item
-        unselectedItemColor: Colors.grey,    // Set the color of the unselected items
+        selectedItemColor: Colors.green,
+        unselectedItemColor: Colors.grey,
       ),
     );
   }
