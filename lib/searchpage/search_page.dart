@@ -38,7 +38,7 @@ class _SearchPageState extends State<SearchPage> {
     if (_scrollController.hasClients) {
       _scrollController.animateTo(
         _scrollController.position.maxScrollExtent,
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         curve: Curves.easeOut,
       );
     }
@@ -54,8 +54,8 @@ class _SearchPageState extends State<SearchPage> {
         child: Column(
           children: [
             // Robot head icon centered at the top
-            Padding(
-              padding: const EdgeInsets.only(top: 20.0),
+            const Padding(
+              padding: EdgeInsets.only(top: 20.0),
               child: Center(
                 child: Icon(
                   Icons.android,
@@ -67,9 +67,9 @@ class _SearchPageState extends State<SearchPage> {
             Expanded(
               child: SingleChildScrollView(
                 controller: _scrollController, // Attach the scroll controller
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Padding(
-                  padding: EdgeInsets.only(left: 10, right: 10, top: 20),
+                  padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -79,14 +79,14 @@ class _SearchPageState extends State<SearchPage> {
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Container(
-                                padding: EdgeInsets.all(10),
+                                padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
                                   color: Colors.green[100],
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 child: Text(
                                   msg,
-                                  style: TextStyle(fontSize: 16),
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                               ),
                             ),
@@ -98,14 +98,14 @@ class _SearchPageState extends State<SearchPage> {
             ),
             // Chat input box blending into the navigation bar
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               color: barColor, // Set the same color as the navigation bar
               child: Row(
                 children: [
                   Expanded(
                     child: TextField(
                       controller: _messageController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: "Send a message",
                         border: InputBorder.none,
                       ),
@@ -113,7 +113,7 @@ class _SearchPageState extends State<SearchPage> {
                     ),
                   ),
                   IconButton(
-                    icon: Icon(Icons.send, color: Colors.green),
+                    icon: const Icon(Icons.send, color: Colors.green),
                     onPressed: _sendMessage,
                   ),
                 ],

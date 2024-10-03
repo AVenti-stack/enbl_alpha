@@ -30,12 +30,13 @@ class _ProfilePageState extends State<ProfilePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
+                  const Text(
                     "Hi John,",
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 48,
                       fontWeight: FontWeight.bold,
                       color: Colors.green,
+                      fontFamily: 'Roboto',
                     ),
                   ),
                   // Replace green circle with image

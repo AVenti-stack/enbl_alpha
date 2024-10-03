@@ -25,6 +25,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
         Text(
           title,
           style: const TextStyle(
+            fontFamily: 'Roboto', // Use Roboto font
             color: Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -70,7 +71,10 @@ class _MainFoodPageState extends State<MainFoodPage> {
             child: Center(
               child: Text(
                 'Item ${index + 1}',
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(
+                  fontFamily: 'Roboto', // Use Roboto font
+                  color: Colors.white,
+                ),
               ),
             ),
           );
@@ -85,6 +89,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
         const Text(
           "Start Workout",
           style: TextStyle(
+            fontFamily: 'Roboto', // Use Roboto font
             color: Colors.green,
             fontSize: 25,
             fontWeight: FontWeight.bold,
@@ -121,14 +126,16 @@ class _MainFoodPageState extends State<MainFoodPage> {
                       Text(
                         "WELCOME",
                         style: TextStyle(
+                          fontFamily: 'Roboto', // Use Roboto font
                           color: Colors.green,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       Text(
-                        "JOHN",
+                        " Guest",
                         style: TextStyle(
+                          fontFamily: 'Roboto', // Use Roboto font
                           color: Colors.green,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -141,7 +148,11 @@ class _MainFoodPageState extends State<MainFoodPage> {
                 // Today's Generated Workout
                 const Text(
                   "Today's Generated Workout",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontFamily: 'Roboto', // Use Roboto font
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 20),
 
@@ -184,6 +195,6 @@ class _MainFoodPageState extends State<MainFoodPage> {
           ),
         ),
       ),
-     );
+    );
   }
 }

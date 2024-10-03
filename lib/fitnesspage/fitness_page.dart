@@ -19,7 +19,7 @@ class _FitnessPage extends State<FitnessPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
@@ -35,6 +35,7 @@ class _FitnessPage extends State<FitnessPage> {
                   fontSize: 35,
                   fontWeight: FontWeight.bold,
                   color: Colors.green,
+                  fontFamily: 'Roboto',
                 ),
                 textAlign: TextAlign.left,
               ),
