@@ -38,13 +38,13 @@ class _ProfilePageState extends State<ProfilePage> {
                       color: Colors.green,
                     ),
                   ),
-                  // Placeholder for Profile Picture
-                  Container(
-                    width: 80,
-                    height: 80,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.green,
+                  // Replace green circle with image
+                  ClipOval( // Clip the image to a circular shape
+                    child: Image.asset(
+                      'assets/image/GymBroProfile.jpg', // Use the correct path
+                      width: 80,
+                      height: 80,
+                      fit: BoxFit.cover, // Ensures the image covers the circle
                     ),
                   ),
                 ],
