@@ -51,8 +51,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     style: const TextStyle(
                       fontSize: 48,
                       fontWeight: FontWeight.bold,
-                      color: Colors.green,
-                      fontFamily: 'Roboto',
+                      color: customGreen,
+              
                     ),
                   ),
                   // Profile Image

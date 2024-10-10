@@ -300,7 +300,8 @@ class _NutritionPage extends State<NutritionPage> {
                   },
                   child: Row(
                     children: [
-                      Text(
+                      SizedBox(width: 20),
+                      Text(                   
                         currentMonth,
                         style: const TextStyle(
                           fontSize: 35,
