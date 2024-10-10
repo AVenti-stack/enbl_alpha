@@ -9,7 +9,7 @@ class NutritionPage extends StatefulWidget {
 
 class _NutritionPage extends State<NutritionPage> {
   int _selectedIndex = 3;
-  List<int> _selectedDays = [];
+  final List<int> _selectedDays = [];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -23,14 +23,14 @@ class _NutritionPage extends State<NutritionPage> {
     return Scaffold(
       body: SafeArea(
       child:SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding: EdgeInsets.only(top: 30.0, left: 20),
+          padding: const EdgeInsets.only(top: 30.0, left: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               // Title: NUTRITION
-              Text(
+              const Text(
                 "NUTRITION",
                 style: TextStyle(
                   fontSize: 35,
@@ -45,7 +45,7 @@ class _NutritionPage extends State<NutritionPage> {
                 mainAxisAlignment: MainAxisAlignment
                     .spaceBetween, // Ensure space between text and icons
                 children: [
-                  Row(
+                  const Row(
                     children: [
                       Text(
                         "September",
@@ -71,13 +71,13 @@ class _NutritionPage extends State<NutritionPage> {
                   Row(
                     children: [
                       IconButton(
-                        icon: Icon(Icons.arrow_back_ios),
+                        icon: const Icon(Icons.arrow_back_ios),
                         onPressed: () {
                           // Handle back arrow press
                         },
                       ),
                       IconButton(
-                        icon: Icon(Icons.arrow_forward_ios),
+                        icon: const Icon(Icons.arrow_forward_ios),
                         onPressed: () {
                           // Handle forward arrow press
                         },
@@ -87,9 +87,9 @@ class _NutritionPage extends State<NutritionPage> {
                 ],
               ),
 
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               //Calendar Days Monday - Friday
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text("Sun",
@@ -116,10 +116,10 @@ class _NutritionPage extends State<NutritionPage> {
                 ],
               ),
 
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               //Calendar numbered Days 1-30
               //for now cause sept has 30 days
-              Container(
+              SizedBox(
                 height: 50, // Set height for the day boxes
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -138,7 +138,7 @@ class _NutritionPage extends State<NutritionPage> {
                       },
                       child: Container(
                         width: 50, // Width of each day box
-                        margin: EdgeInsets.symmetric(
+                        margin: const EdgeInsets.symmetric(
                             horizontal: 4.0), // Space between days
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
@@ -166,12 +166,12 @@ class _NutritionPage extends State<NutritionPage> {
                 ),
               ),
 
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               //a few Recipes
               Container(
-                margin: EdgeInsets.symmetric(
+                margin: const EdgeInsets.symmetric(
                     vertical: 8.0), // Space between each item
-                padding: EdgeInsets.all(12.0), // Padding inside the container
+                padding: const EdgeInsets.all(12.0), // Padding inside the container
                 width: MediaQuery.of(context).size.width *
                     0.90, // Adjust the width to 85% of screen width
                 height: 130, // Adjust the height as needed
@@ -183,13 +183,13 @@ class _NutritionPage extends State<NutritionPage> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 2,
                       blurRadius: 5,
-                      offset: Offset(0, 3), // Changes position of shadow
+                      offset: const Offset(0, 3), // Changes position of shadow
                     ),
                   ],
                 ),
                 child: Row(
                   children: [
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     // Icon container
                     Container(
                       width: 90,
@@ -200,16 +200,16 @@ class _NutritionPage extends State<NutritionPage> {
                         borderRadius: BorderRadius.circular(
                             25.0), // Rounded square corners
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons
                             .fastfood, // Example icon, replace with actual food icon
                         color: Colors.brown,
                       ),
                     ),
-                    SizedBox(width: 15.0), // Space between icon and text
+                    const SizedBox(width: 15.0), // Space between icon and text
 
                     // Title
-                    Expanded(
+                    const Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment
@@ -287,9 +287,9 @@ class _NutritionPage extends State<NutritionPage> {
               ),
 
               Container(
-                margin: EdgeInsets.symmetric(
+                margin: const EdgeInsets.symmetric(
                     vertical: 8.0), // Space between each item
-                padding: EdgeInsets.all(12.0), // Padding inside the container
+                padding: const EdgeInsets.all(12.0), // Padding inside the container
                 width: MediaQuery.of(context).size.width *
                     0.90, // Adjust the width to 85% of screen width
                 height: 130, // Adjust the height as needed
@@ -301,13 +301,13 @@ class _NutritionPage extends State<NutritionPage> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 2,
                       blurRadius: 5,
-                      offset: Offset(0, 3), // Changes position of shadow
+                      offset: const Offset(0, 3), // Changes position of shadow
                     ),
                   ],
                 ),
                 child: Row(
                   children: [
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     // Icon container
                     Container(
                       width: 90,
@@ -318,16 +318,16 @@ class _NutritionPage extends State<NutritionPage> {
                         borderRadius: BorderRadius.circular(
                             25.0), // Rounded square corners
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons
                             .fastfood, // Example icon, replace with actual food icon
                         color: Colors.brown,
                       ),
                     ),
-                    SizedBox(width: 15.0), // Space between icon and text
+                    const SizedBox(width: 15.0), // Space between icon and text
 
                     // Title
-                    Expanded(
+                    const Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment
@@ -405,9 +405,9 @@ class _NutritionPage extends State<NutritionPage> {
               ),
 
               Container(
-                margin: EdgeInsets.symmetric(
+                margin: const EdgeInsets.symmetric(
                     vertical: 8.0), // Space between each item
-                padding: EdgeInsets.all(12.0), // Padding inside the container
+                padding: const EdgeInsets.all(12.0), // Padding inside the container
                 width: MediaQuery.of(context).size.width *
                     0.90, // Adjust the width to 85% of screen width
                 height: 130, // Adjust the height as needed
@@ -419,13 +419,13 @@ class _NutritionPage extends State<NutritionPage> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 2,
                       blurRadius: 5,
-                      offset: Offset(0, 3), // Changes position of shadow
+                      offset: const Offset(0, 3), // Changes position of shadow
                     ),
                   ],
                 ),
                 child: Row(
                   children: [
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     // Icon container
                     Container(
                       width: 90,
@@ -436,16 +436,16 @@ class _NutritionPage extends State<NutritionPage> {
                         borderRadius: BorderRadius.circular(
                             25.0), // Rounded square corners
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons
                             .fastfood, // Example icon, replace with actual food icon
                         color: Colors.brown,
                       ),
                     ),
-                    SizedBox(width: 15.0), // Space between icon and text
+                    const SizedBox(width: 15.0), // Space between icon and text
 
                     // Title
-                    Expanded(
+                    const Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment
@@ -523,9 +523,9 @@ class _NutritionPage extends State<NutritionPage> {
               ),
 
               Container(
-                margin: EdgeInsets.symmetric(
+                margin: const EdgeInsets.symmetric(
                     vertical: 8.0), // Space between each item
-                padding: EdgeInsets.all(12.0), // Padding inside the container
+                padding: const EdgeInsets.all(12.0), // Padding inside the container
                 width: MediaQuery.of(context).size.width *
                     0.90, // Adjust the width to 85% of screen width
                 height: 130, // Adjust the height as needed
@@ -537,13 +537,13 @@ class _NutritionPage extends State<NutritionPage> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 2,
                       blurRadius: 5,
-                      offset: Offset(0, 3), // Changes position of shadow
+                      offset: const Offset(0, 3), // Changes position of shadow
                     ),
                   ],
                 ),
                 child: Row(
                   children: [
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     // Icon container
                     Container(
                       width: 90,
@@ -554,16 +554,16 @@ class _NutritionPage extends State<NutritionPage> {
                         borderRadius: BorderRadius.circular(
                             25.0), // Rounded square corners
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons
                             .fastfood, // Example icon, replace with actual food icon
                         color: Colors.brown,
                       ),
                     ),
-                    SizedBox(width: 15.0), // Space between icon and text
+                    const SizedBox(width: 15.0), // Space between icon and text
 
                     // Title
-                    Expanded(
+                    const Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment
@@ -641,9 +641,9 @@ class _NutritionPage extends State<NutritionPage> {
               ),
 
               Container(
-                margin: EdgeInsets.symmetric(
+                margin: const EdgeInsets.symmetric(
                     vertical: 8.0), // Space between each item
-                padding: EdgeInsets.all(12.0), // Padding inside the container
+                padding: const EdgeInsets.all(12.0), // Padding inside the container
                 width: MediaQuery.of(context).size.width *
                     0.90, // Adjust the width to 85% of screen width
                 height: 130, // Adjust the height as needed
@@ -655,13 +655,13 @@ class _NutritionPage extends State<NutritionPage> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 2,
                       blurRadius: 5,
-                      offset: Offset(0, 3), // Changes position of shadow
+                      offset: const Offset(0, 3), // Changes position of shadow
                     ),
                   ],
                 ),
                 child: Row(
                   children: [
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     // Icon container
                     Container(
                       width: 90,
@@ -672,16 +672,16 @@ class _NutritionPage extends State<NutritionPage> {
                         borderRadius: BorderRadius.circular(
                             25.0), // Rounded square corners
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons
                             .fastfood, // Example icon, replace with actual food icon
                         color: Colors.brown,
                       ),
                     ),
-                    SizedBox(width: 15.0), // Space between icon and text
+                    const SizedBox(width: 15.0), // Space between icon and text
 
                     // Title
-                    Expanded(
+                    const Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment
@@ -759,9 +759,9 @@ class _NutritionPage extends State<NutritionPage> {
               ),
 
               Container(
-                margin: EdgeInsets.symmetric(
+                margin: const EdgeInsets.symmetric(
                     vertical: 8.0), // Space between each item
-                padding: EdgeInsets.all(12.0), // Padding inside the container
+                padding: const EdgeInsets.all(12.0), // Padding inside the container
                 width: MediaQuery.of(context).size.width *
                     0.90, // Adjust the width to 85% of screen width
                 height: 130, // Adjust the height as needed
@@ -773,13 +773,13 @@ class _NutritionPage extends State<NutritionPage> {
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 2,
                       blurRadius: 5,
-                      offset: Offset(0, 3), // Changes position of shadow
+                      offset: const Offset(0, 3), // Changes position of shadow
                     ),
                   ],
                 ),
                 child: Row(
                   children: [
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     // Icon container
                     Container(
                       width: 90,
@@ -790,16 +790,16 @@ class _NutritionPage extends State<NutritionPage> {
                         borderRadius: BorderRadius.circular(
                             25.0), // Rounded square corners
                       ),
-                      child: Icon(
+                      child: const Icon(
                         Icons
                             .fastfood, // Example icon, replace with actual food icon
                         color: Colors.brown,
                       ),
                     ),
-                    SizedBox(width: 15.0), // Space between icon and text
+                    const SizedBox(width: 15.0), // Space between icon and text
 
                     // Title
-                    Expanded(
+                    const Expanded(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment

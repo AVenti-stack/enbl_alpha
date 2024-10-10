@@ -1,18 +1,19 @@
+import 'package:enbl_alpha/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:enbl_alpha/fitnesspage/fitness_page.dart';
 import 'package:enbl_alpha/homepage/main_food_page.dart';
 import 'package:enbl_alpha/nutritionpage/nutrition_page.dart';
 import 'package:enbl_alpha/profilepage/profile_page.dart';
 import 'package:enbl_alpha/searchpage/search_page.dart';
-import 'package:enbl_alpha/accountCreation/account_creation.dart'; // Update this to the correct path
 import 'package:enbl_alpha/accountCreation/login_page.dart'; // Correct path for account creation
+import 'package:google_fonts/google_fonts.dart'; // Import Google Fonts package
 
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        // Set the text theme to use Barlow font across the entire app
+        textTheme: GoogleFonts.barlowTextTheme(Theme.of(context).textTheme),
         primarySwatch: Colors.blue,
       ),
       home: const LoginPage(), // Show the LoginPage when the app starts
@@ -29,7 +32,7 @@ class MyApp extends StatelessWidget {
 
 // MainScreen with Bottom Navigation Bar
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  const MainScreen({super.key});
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -40,11 +43,11 @@ class _MainScreenState extends State<MainScreen> {
 
   // List of pages for the BottomNavigationBar
   static final List<Widget> _pages = <Widget>[
-    MainFoodPage(),
-    FitnessPage(),
-    SearchPage(),
-    NutritionPage(),
-    ProfilePage(),
+    const MainFoodPage(),
+    const FitnessPage(),
+    const SearchPage(),
+    const NutritionPage(),
+    const ProfilePage(),
   ];
 
   // Function to handle taps on the BottomNavigationBar
@@ -72,7 +75,7 @@ class _MainScreenState extends State<MainScreen> {
             label: 'Fitness',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: Icon(Icons.chat_bubble),
             label: 'Search',
           ),
           BottomNavigationBarItem(
@@ -84,7 +87,7 @@ class _MainScreenState extends State<MainScreen> {
             label: 'Profile',
           ),
         ],
-        selectedItemColor: Colors.green,
+        selectedItemColor: customGreen,
         unselectedItemColor: Colors.grey,
       ),
     );

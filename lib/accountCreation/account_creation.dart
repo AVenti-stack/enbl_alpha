@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:enbl_alpha/main.dart'; // Import MainScreen for navigation after account creation
 
 class CreateAccountPage extends StatefulWidget {
-  const CreateAccountPage({Key? key}) : super(key: key);
+  const CreateAccountPage({super.key});
 
   @override
   _CreateAccountPageState createState() => _CreateAccountPageState();
@@ -33,7 +33,7 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
   bool _isFormComplete = false;
   bool _emailAlreadyInUse = false;
 
-  PageController _pageController = PageController();
+  final PageController _pageController = PageController();
 
   // Path to the desired folder
   final String _jsonDirectoryPath = '/Users/giangnguyen/Desktop/enbl_alpha/JSON_files';
@@ -263,8 +263,8 @@ class _CreateAccountPageState extends State<CreateAccountPage> {
               },
             ),
             if (_emailAlreadyInUse)
-              Row(
-                children: const [
+              const Row(
+                children: [
                   Icon(Icons.error, color: Colors.red),
                   SizedBox(width: 8),
                   Text('Email already in use, please login.', style: TextStyle(color: Colors.red)),
