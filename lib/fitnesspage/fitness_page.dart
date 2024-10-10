@@ -142,14 +142,6 @@ class _FitnessPageState extends State<FitnessPage> {
     );
   }
 
-  // Function to calculate the number of days in the month
-  int daysInMonth(DateTime date) {
-    var firstDayOfNextMonth = (date.month < 12)
-        ? DateTime(date.year, date.month + 1, 1)
-        : DateTime(date.year + 1, 1, 1);
-    return firstDayOfNextMonth.subtract(const Duration(days: 1)).day;
-  }
-
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
@@ -249,7 +241,6 @@ class _FitnessPageState extends State<FitnessPage> {
                   },
                 ),
               ),
-              const SizedBox(height: 20),
             ],
           ),
         ),
