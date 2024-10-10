@@ -54,7 +54,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
   }
 
   Widget buildHorizontalList() {
-    return Container(
+    return SizedBox(
       height: 100,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -119,10 +119,10 @@ class _MainFoodPageState extends State<MainFoodPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Header with welcome text and NAME
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Row(
-                    children: const [
+                    children: [
                       Text(
                         "WELCOME",
                         style: TextStyle(

@@ -12,7 +12,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +22,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const LoginPage(), // Show the LoginPage when the app starts
+      //const LoginPage()
+      home: const MainScreen(), // Show the LoginPage when the app starts
     );
   }
 }
 
 // MainScreen with Bottom Navigation Bar
 class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  const MainScreen({super.key});
 
   @override
   _MainScreenState createState() => _MainScreenState();
@@ -40,11 +41,11 @@ class _MainScreenState extends State<MainScreen> {
 
   // List of pages for the BottomNavigationBar
   static final List<Widget> _pages = <Widget>[
-    MainFoodPage(),
-    FitnessPage(),
-    SearchPage(),
-    NutritionPage(),
-    ProfilePage(),
+    const MainFoodPage(),
+    const FitnessPage(),
+    const SearchPage(),
+    const NutritionPage(),
+    const ProfilePage(),
   ];
 
   // Function to handle taps on the BottomNavigationBar
@@ -62,25 +63,31 @@ class _MainScreenState extends State<MainScreen> {
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: _selectedIndex == 0
+              ? Image.asset('assets/image/Home-Green.png') // Selected state image
+              : Image.asset('assets/image/Home.png'), 
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.fitness_center),
+            icon: _selectedIndex == 1
+              ? Image.asset('assets/image/Dumbell-Green.png') // Selected state image
+              : Image.asset('assets/image/Dumbell.png'),
             label: 'Fitness',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.search),
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.apple),
+            icon: Image.asset('assets/image/Utensils.png'),
             label: 'Nutrition',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: _selectedIndex == 4
+              ? Image.asset('assets/image/Gear-Green.png') // Selected state image
+              : Image.asset('assets/image/Gear.png'),
             label: 'Profile',
           ),
         ],
