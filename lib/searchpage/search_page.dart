@@ -86,7 +86,11 @@ class _SearchPageState extends State<SearchPage> {
                                 ),
                                 child: Text(
                                   msg,
+<<<<<<< HEAD
                                   style: const TextStyle(fontSize: 16, fontFamily: 'Roboto', fontWeight: FontWeight.bold),
+=======
+                                  style: const TextStyle(fontSize: 16),
+>>>>>>> 03155d1c3d06bf5b39e29ae18386a170daeabe2c
                                 ),
                               ),
                             ),
