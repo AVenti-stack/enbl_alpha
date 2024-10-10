@@ -2,6 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:enbl_alpha/globals.dart'; // Assuming globals.dart contains the custom color definitions
 import 'package:intl/intl.dart'; // Assuming you have intl for date formatting
 
+class Exercise {
+  final String name;
+  final int reps;
+  final int sets;
+  final String rest;
+  final bool isComplete;
+  final String imagePath;
+
+  Exercise({
+    required this.name,
+    required this.reps,
+    required this.sets,
+    required this.rest,
+    this.isComplete = false,
+    required this.imagePath,
+  });
+}
+
 class FitnessPage extends StatefulWidget {
   const FitnessPage({super.key});
 
@@ -12,15 +30,62 @@ class FitnessPage extends StatefulWidget {
 class _FitnessPageState extends State<FitnessPage> {
   int _selectedIndex = 1;
   DateTime currentDate = DateTime.now();
-  final List<String> weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  late ScrollController _scrollController; // Scroll controller for auto-scrolling
+  final List<String> weekdays = [
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat"
+  ];
+  late ScrollController
+      _scrollController; // Scroll controller for auto-scrolling
+
+  // List of exercises
+  List<Exercise> exercises = [
+    Exercise(
+        name: "Chest Dips",
+        reps: 10,
+        sets: 3,
+        rest: "1 Minute",
+        imagePath: 'assets/image/WomanDoingShoulders.jpeg'),
+    Exercise(
+        name: "Flat Bench Press",
+        reps: 10,
+        sets: 3,
+        rest: "1 Minute",
+        imagePath: 'assets/image/WomanDoingShoulders.jpeg'),
+    Exercise(
+        name: "Incline Bench Press",
+        reps: 10,
+        sets: 3,
+        rest: "1 Minute",
+        imagePath: 'assets/image/WomanDoingShoulders.jpeg'),
+    Exercise(
+        name: "Cable Tricep Pushdown",
+        reps: 10,
+        sets: 3,
+        rest: "1 Minute",
+        imagePath: 'assets/image/WomanDoingShoulders.jpeg'),
+    Exercise(
+        name: "Overhead Tricep Pushdown",
+        reps: 10,
+        sets: 3,
+        rest: "1 Minute",
+        imagePath: 'assets/image/WomanDoingShoulders.jpeg'),
+  ];
+// Additional variable to track the visibility of exercise details
+  late List<bool> exerciseDetailsVisible;
 
   @override
   void initState() {
     super.initState();
-    _scrollController = ScrollController(); // Initialize the scroll controller
+    _scrollController = ScrollController();
+    exerciseDetailsVisible = List.generate(
+        exercises.length, (_) => false); // Initialize visibility list
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _scrollToToday(); // Auto-scroll after the widget is built
+      _scrollToToday();
     });
   }
 
@@ -32,7 +97,8 @@ class _FitnessPageState extends State<FitnessPage> {
 
   void _scrollToToday() {
     int today = DateTime.now().day - 1; // Get today's index (0-based)
-    double position = today * 54.0; // 50 + 4 for padding/margin (adjust this as needed)
+    double position =
+        today * 54.0; // 50 + 4 for padding/margin (adjust this as needed)
     _scrollController.animateTo(position,
         duration: const Duration(milliseconds: 500), curve: Curves.easeInOut);
   }
@@ -43,7 +109,8 @@ class _FitnessPageState extends State<FitnessPage> {
       context: context,
       builder: (BuildContext context) {
         return Dialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
           backgroundColor: Colors.white.withOpacity(0.9),
           child: SizedBox(
             height: 400,
@@ -57,19 +124,22 @@ class _FitnessPageState extends State<FitnessPage> {
                       icon: const Icon(Icons.arrow_back_ios),
                       onPressed: () {
                         setState(() {
-                          currentDate = DateTime(currentDate.year, currentDate.month - 1);
+                          currentDate =
+                              DateTime(currentDate.year, currentDate.month - 1);
                         });
                       },
                     ),
                     Text(
                       DateFormat('MMMM yyyy').format(currentDate),
-                      style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                          fontSize: 24, fontWeight: FontWeight.bold),
                     ),
                     IconButton(
                       icon: const Icon(Icons.arrow_forward_ios),
                       onPressed: () {
                         setState(() {
-                          currentDate = DateTime(currentDate.year, currentDate.month + 1);
+                          currentDate =
+                              DateTime(currentDate.year, currentDate.month + 1);
                         });
                       },
                     ),
@@ -80,28 +150,34 @@ class _FitnessPageState extends State<FitnessPage> {
                 // Calendar layout for the pop-up
                 Expanded(
                   child: GridView.builder(
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 7,
                       mainAxisSpacing: 10,
                       crossAxisSpacing: 10,
                     ),
                     itemCount: daysInMonth(currentDate),
                     itemBuilder: (context, index) {
-                      final date = DateTime(currentDate.year, currentDate.month, index + 1);
-                      bool isToday = date.day == DateTime.now().day && date.month == DateTime.now().month;
+                      final date = DateTime(
+                          currentDate.year, currentDate.month, index + 1);
+                      bool isToday = date.day == DateTime.now().day &&
+                          date.month == DateTime.now().month;
 
                       return GestureDetector(
                         onTap: () {
-                          Navigator.pop(context); // Close the dialog when a day is selected
+                          Navigator.pop(
+                              context); // Close the dialog when a day is selected
                           setState(() {
-                            currentDate = DateTime(currentDate.year, currentDate.month, index + 1);
+                            currentDate = DateTime(
+                                currentDate.year, currentDate.month, index + 1);
                           });
                         },
                         child: Container(
                           decoration: BoxDecoration(
                             color: isToday ? customGreen : Colors.transparent,
                             shape: BoxShape.circle,
-                            border: isToday ? null : Border.all(color: Colors.grey),
+                            border:
+                                isToday ? null : Border.all(color: Colors.grey),
                           ),
                           child: Center(
                             child: Text(
@@ -142,9 +218,209 @@ class _FitnessPageState extends State<FitnessPage> {
     );
   }
 
+  // Function to calculate the number of days in the month
+  int daysInMonth(DateTime date) {
+    var firstDayOfNextMonth = (date.month < 12)
+        ? DateTime(date.year, date.month + 1, 1)
+        : DateTime(date.year + 1, 1, 1);
+    return firstDayOfNextMonth.subtract(const Duration(days: 1)).day;
+  }
+
+  Widget _buildExerciseList() {
+    return ListView.builder(
+      itemCount: exercises.length,
+      itemBuilder: (context, index) {
+        final exercise = exercises[index];
+        return Card(
+          elevation: 4,
+          margin: const EdgeInsets.symmetric(vertical: 5),
+          color: customGreen,
+          child: GestureDetector(
+            onTap: () {
+              setState(() {
+                exerciseDetailsVisible[index] = !exerciseDetailsVisible[index];
+
+                if (!exerciseDetailsVisible[index]) {
+                  exercises[index] = Exercise(
+                    name: exercise.name,
+                    reps: exercise.reps,
+                    sets: exercise.sets,
+                    rest: exercise.rest,
+                    isComplete: !exercise.isComplete,
+                    imagePath: exercise.imagePath,
+                  );
+                }
+              });
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(16), // Increased padding
+              child: Row(
+                children: [
+                  // Conditionally render the image
+                  if (exerciseDetailsVisible[
+                      index]) // Show image only when details are visible
+                    Container(
+                      width: 80, // Fixed width for the image
+                      height: 100, // Set height to the desired value
+                      child: Image.asset(
+                        exercise.imagePath,
+                        fit: BoxFit
+                            .cover, // Ensure the image covers the container
+                      ),
+                    ),
+                  const SizedBox(
+                      width: 12), // Increased spacing between image and text
+                  Expanded(
+                    // Expand this part to fill the remaining space
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          exercise.name,
+                          style: TextStyle(
+                            fontSize: 20, // Increased font size
+                            fontWeight:
+                                FontWeight.w900, // Increased font weight
+                            color: exercise.isComplete
+                                ? Colors.grey
+                                : Colors.white,
+                          ),
+                        ),
+                        const SizedBox(
+                            height: 2), // Increased spacing between elements
+                        if (exerciseDetailsVisible[
+                            index]) // Show details only if visible
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Reps',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize:
+                                          15, // Increased size for detail labels
+                                    ),
+                                  ),
+                                  SizedBox(
+                                      height:
+                                          5), // Add spacing between label and value
+                                  Center(
+                                    child: Text(
+                                      '${exercise.reps}',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize:
+                                            12, // Increased size for detail values
+                                        fontWeight: FontWeight
+                                            .bold, // Bold detail values
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Sets',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                      height:
+                                          5), // Add spacing between label and value
+                                  Center(
+                                    child: Text(
+                                      '${exercise.sets}',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Rest',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                      height:
+                                          5), // Add spacing between label and value
+                                  Center(
+                                    child: Text(
+                                      '${exercise.rest}',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Complete',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                      height:
+                                          5), // Add spacing between label and icon
+                                  Center(
+                                    child: Icon(
+                                      exercise.isComplete
+                                          ? Icons.check_circle
+                                          : Icons.radio_button_unchecked,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                      ],
+                    ),
+                  ),
+                  if (!exerciseDetailsVisible[
+                      index]) // Show completion status icon
+                    Image.asset(
+                      exercise.isComplete
+                          ? 'assets/image/checkmark.png'
+                          : 'assets/image/arrow-up.png',
+                      width: 24,
+                      height: 24,
+                      color: Colors.white,
+                    ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(top: 20.0, left: 20, right: 40),
@@ -206,7 +482,11 @@ class _FitnessPageState extends State<FitnessPage> {
                         currentDate.month == DateTime.now().month &&
                         index + 1 == DateTime.now().day;
 
-                    String weekday = weekdays[(index + DateTime(currentDate.year, currentDate.month, 1).weekday - 1) % 7];
+                    String weekday = weekdays[(index +
+                            DateTime(currentDate.year, currentDate.month, 1)
+                                .weekday -
+                            1) %
+                        7];
 
                     return Column(
                       children: [
@@ -241,6 +521,10 @@ class _FitnessPageState extends State<FitnessPage> {
                   },
                 ),
               ),
+              const SizedBox(height: 20),
+
+              // Exercise list
+              Expanded(child: _buildExerciseList()),
             ],
           ),
         ),
