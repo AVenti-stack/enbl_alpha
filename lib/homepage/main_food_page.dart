@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:enbl_alpha/globals.dart'; // Global variables
+import 'package:enbl_alpha/globals.dart'; // Import the global file for the global function
 
 class MainFoodPage extends StatefulWidget {
   const MainFoodPage({super.key});
@@ -10,29 +10,23 @@ class MainFoodPage extends StatefulWidget {
 
 class _MainFoodPageState extends State<MainFoodPage> {
   String firstName = "Guest"; // Default value is "Guest"
-  List<int> _firstListItems = [
-    1,
-    2,
-    3
-  ]; // List of initial items for the first horizontal list
-  List<bool> _isAddedList = List<bool>.filled(
-      9, false); // Track which squares are added to the first list
+  List<int> _firstListItems = [1, 2, 3]; // List of initial items for the first horizontal list
+  List<bool> _isAddedList = List<bool>.filled(9, false); // Track which squares are added to the first list
 
   @override
   void initState() {
     super.initState();
-    _loadFirstName(); // Load the user's first name when the page is initialized
+    _initializeFirstName(); // Call the global function to load the user's first name
   }
 
-  // Function to load the first name from the JSON file
-  Future<void> _loadFirstName() async {
+  // Function to load the first name using the global function
+  Future<void> _initializeFirstName() async {
+    String name = await loadFirstName(); // Call the global function from globals.dart
     setState(() {
-      firstName = "John"; // Example first name
-      firstName = firstName.toUpperCase();
+      firstName = name; // Update the state with the loaded first name
     });
   }
 
-  // Show a dialog pop-up when the plus button is clicked
   // Show a dialog pop-up when the plus button is clicked
   void _showPopUp(BuildContext context) {
     showDialog(
@@ -44,12 +38,10 @@ class _MainFoodPageState extends State<MainFoodPage> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20.0),
               ),
-              backgroundColor: Colors.white
-                  .withOpacity(0.8), // Set the background with transparency
+              backgroundColor: Colors.white.withOpacity(0.8), // Set the background with transparency
               child: Container(
                 width: double.infinity, // Take up full width
-                height: MediaQuery.of(context).size.height *
-                    0.5, // 50% of the screen height
+                height: MediaQuery.of(context).size.height * 0.5, // 50% of the screen height
                 padding: const EdgeInsets.all(20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -63,8 +55,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                     const SizedBox(height: 20),
                     Expanded(
                       child: GridView.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 3, // 3 columns
                           crossAxisSpacing: 10, // Space between columns
                           mainAxisSpacing: 10, // Space between rows
@@ -72,8 +63,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
                         itemCount: 9, // 9 squares
                         itemBuilder: (context, index) {
                           return ToggleSquare(
-                            isAdded: _isAddedList[
-                                index], // Pass the state of the square
+                            isAdded: _isAddedList[index], // Pass the state of the square
                             onToggle: () {
                               setState(() {
                                 _toggleItem(index); // Toggle the state
@@ -106,14 +96,12 @@ class _MainFoodPageState extends State<MainFoodPage> {
   }
 
   // Function to build the first horizontal list with dynamic items
-  // Function to build the first horizontal list with dynamic items
   Widget buildFirstHorizontalList() {
     return Container(
       height: 150,
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: _firstListItems.length +
-            3, // Always show 3 initial items plus toggled items
+        itemCount: _firstListItems.length + 3, // Always show 3 initial items plus toggled items
         itemBuilder: (context, index) {
           if (index < 3) {
             // Show the initial 3 boxes (never removed)
@@ -137,7 +125,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
     );
   }
 
-// Function to add an item to the first list (but not the initial 3 items)
+  // Function to add an item to the first list (but not the initial 3 items)
   void _addItem(int item) {
     if (!_firstListItems.contains(item)) {
       setState(() {
@@ -146,7 +134,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
     }
   }
 
-// Function to remove an item from the first list (but not the initial 3 items)
+  // Function to remove an item from the first list (but not the initial 3 items)
   void _removeItem(int item) {
     if (_firstListItems.contains(item)) {
       setState(() {
@@ -217,39 +205,11 @@ class _MainFoodPageState extends State<MainFoodPage> {
                 const Text(
                   "Today's Generated Workout",
                   style: TextStyle(
-                      fontSize: 25,
-                      color: customGreen,
-                      fontWeight: FontWeight.w900),
+                    fontSize: 25,
+                    color: customGreen,
+                    fontWeight: FontWeight.w900,
+                  ),
                 ),
-                const SizedBox(height: 20),
-
-                Row(
-                  children: [
-                    // Workout Sections
-                    buildOverviewRow("Chest & Tricep Overview"),
-                    const SizedBox(width: 115),
-                    Container(
-                      height: 20,
-                      width: 20,
-                      alignment: Alignment.center,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: customGreen,
-                      ),
-                      child: IconButton(
-                        padding: EdgeInsets.zero,
-                        icon: const Icon(Icons.add),
-                        onPressed: () {
-                          _showPopUp(
-                              context); // Show dialog when the plus icon is clicked
-                        },
-                        color: Colors.white,
-                        iconSize: 16,
-                      ),
-                    ),
-                  ],
-                ),
-
                 const SizedBox(height: 20),
                 buildFirstHorizontalList(), // Only the first horizontal list is affected by the pop-up
                 const SizedBox(height: 20),
@@ -260,9 +220,10 @@ class _MainFoodPageState extends State<MainFoodPage> {
                 const Text(
                   "Tomorrow's Workout",
                   style: TextStyle(
-                      fontSize: 25,
-                      color: customGreen,
-                      fontWeight: FontWeight.w900),
+                    fontSize: 25,
+                    color: customGreen,
+                    fontWeight: FontWeight.w900,
+                  ),
                 ),
                 const SizedBox(height: 20),
                 buildOverviewRow("Legs Overview"),
@@ -285,7 +246,8 @@ class _MainFoodPageState extends State<MainFoodPage> {
         itemCount: 3, // For example, fixed number of items for other lists
         itemBuilder: (context, index) {
           return buildBlueBox(
-              index + 1); // Call the function to create a blue box
+            index + 1,
+          ); // Call the function to create a blue box
         },
       ),
     );
@@ -327,7 +289,7 @@ class ToggleSquare extends StatelessWidget {
                 size: 30, // Adjust the size of the dumbbell icon
                 color: Colors.black, // Set the color of the dumbbell icon
               ),
-            ), // A grey square above the circle
+            ),
           ),
           const SizedBox(height: 10), // Space between the square and the circle
           Container(
@@ -335,14 +297,10 @@ class ToggleSquare extends StatelessWidget {
             width: 20, // Smaller circle
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: isAdded
-                  ? Colors.red
-                  : Colors.green, // Red for minus, Green for plus
+              color: isAdded ? Colors.red : Colors.green, // Red for minus, Green for plus
             ),
             child: Icon(
-              isAdded
-                  ? Icons.remove
-                  : Icons.add, // Toggle between plus and minus
+              isAdded ? Icons.remove : Icons.add, // Toggle between plus and minus
               color: Colors.white,
               size: 20, // Adjust icon size to fit smaller circle
             ),
